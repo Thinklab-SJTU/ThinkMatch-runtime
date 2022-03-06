@@ -29,7 +29,7 @@ jobs:
       id-token: write
     strategy:
       matrix:
-        tag: ['torch1.6.0-cuda10.1-cudnn7-pyg1.6.3', 'torch1.7.1-cuda11.0-cudnn8-pyg1.6.3']
+        tag: ['torch1.6.0-cuda10.1-cudnn7-pyg1.6.3', 'torch1.7.1-cuda11.0-cudnn8-pyg1.6.3', 'torch1.10.0-cuda11.3-cudnn8-pyg2.0.3']
 
     steps:
       # Fetch the latest pygmtools version
