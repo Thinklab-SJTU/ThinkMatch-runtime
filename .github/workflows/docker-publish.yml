@@ -8,7 +8,9 @@ name: Docker
 on:
   schedule:
     - cron: '43 22 * * *'
-  workflow_dispatch:
+  push:
+    branches:
+      - master
 
 env:
   # Use docker.io for Docker Hub if empty
