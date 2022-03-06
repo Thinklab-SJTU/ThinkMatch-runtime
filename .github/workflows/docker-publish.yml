@@ -77,7 +77,6 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
-            # minimal
             type=raw,value=${{ matrix.tag }}-pygmtools${{ steps.pygmtools.outputs.latestVersion }}
 
       - name: Check for existing image
