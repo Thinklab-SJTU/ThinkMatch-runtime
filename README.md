@@ -22,7 +22,7 @@ docker pull ghcr.io/thinklab-sjtu/thinkmatch:torch1.7.1-cuda11.0-cudnn8-pyg1.6.3
 For ``torch-1.10.0-cuda11.3``:
 
 ```
-docker pull ghcr.io/thinklab-sjtu/thinkmatch:torch1.7.1-cuda11.0-cudnn8-pyg1.6.3-pygmtools0.2.0 # Recommended for RTX30 GPUs
+docker pull ghcr.io/thinklab-sjtu/thinkmatch:torch1.10.0-cuda11.3-cudnn8-pyg2.0.3-pygmtools0.2.0 # Recommended for RTX30 GPUs
 ```
 
 ## Get the image by Singularity:
@@ -44,5 +44,5 @@ singularity build --fakeroot name_of_your_runtime.sif docker://ghcr.io/thinklab-
 For ``torch-1.10.0-cuda11.3``:
 
 ```
-singularity build --fakeroot name_of_your_runtime.sif docker://ghcr.io/thinklab-sjtu/thinkmatch:torch1.7.1-cuda11.0-cudnn8-pyg1.6.3-pygmtools0.2.0 # Recommended for RTX30 GPUs
+singularity build --fakeroot name_of_your_runtime.sif docker://ghcr.io/thinklab-sjtu/thinkmatch:torch1.10.0-cuda11.3-cudnn8-pyg2.0.3-pygmtools0.2.0 # Recommended for RTX30 GPUs
 ```
