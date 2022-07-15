@@ -81,18 +81,32 @@ jobs:
           tags: |
             type=raw,value=${{ matrix.tag }}-pygmtools${{ steps.pygmtools.outputs.latestVersion }}
 
+      #- name: Check for existing image
+      #  id: existing-image
+      #  uses: javajawa/check-registry-for-image@v1
+      #  with:
+      #    registry: ${{ env.REGISTRY }}
+      #    repository: ${{ env.IMAGE_NAME }}
+      #    tag: ${{ matrix.tag }}-pygmtools${{ steps.pygmtools.outputs.latestVersion }}
       - name: Check for existing image
         id: existing-image
-        uses: javajawa/check-registry-for-image@v1
+        uses: KerberosMorphy/docker-exist-action@v1.1.2
         with:
           registry: ${{ env.REGISTRY }}
-          repository: ${{ env.IMAGE_NAME }}
-          tag: ${{ matrix.tag }}-pygmtools${{ steps.pygmtools.outputs.latestVersion }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          image: ${{ env.IMAGE_NAME }}:${{ matrix.tag }}-pygmtools${{ steps.pygmtools.outputs.latestVersion }}
+
+      # Output the existing-image check
+      - name: Get the output
+        run: |
+          echo "Value is: ${{ steps.existing-image.outputs.image_exist }}."
 
       # Build and push Docker image with Buildx (don't push on PR)
       # https://github.com/docker/build-push-action
       - name: Build and push Docker image
-        if: ${{ steps.existing-image.outputs.exists != 'true' }}
+        #if: ${{ steps.existing-image.outputs.exists != 'true' }}
+        if: ((!steps.existing-image.outputs.image_exist))
         id: build-and-push
         uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
         with:
@@ -107,7 +121,8 @@ jobs:
       # transparency data even for private images, pass --force to cosign below.
       # https://github.com/sigstore/cosign
       - name: Sign the published Docker image
-        if: ${{ github.event_name != 'pull_request' && steps.existing-image.outputs.exists != 'true' }}
+        #if: ${{ github.event_name != 'pull_request' && steps.existing-image.outputs.exists != 'true' }}
+        if: ${{ github.event_name != 'pull_request' && !steps.existing-image.outputs.image_exist }}
         env:
           COSIGN_EXPERIMENTAL: "true"
         # This step uses the identity token to provision an ephemeral certificate
