@@ -3,11 +3,11 @@ FROM pytorch/pytorch:1.10.0-cuda11.3-cudnn8-devel
 LABEL maintainer="runzhong.wang@sjtu.edu.cn"
 
 # update NVIDIA key: https://developer.nvidia.com/blog/updating-the-cuda-linux-gpg-repository-key/
-RUN apt-key del 7fa2af80
-RUN curl -O https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/cuda-keyring_1.0-1_all.deb
-RUN dpkg -i cuda-keyring_1.0-1_all.deb
+#RUN apt-key del 7fa2af80
+#RUN curl -O https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/cuda-keyring_1.0-1_all.deb
+#RUN dpkg -i cuda-keyring_1.0-1_all.deb
 
-RUN apt-get update
+RUN apt-get update --allow-unauthenticated
 RUN apt-get install -y software-properties-common
 RUN add-apt-repository ppa:ubuntu-toolchain-r/test
 RUN apt-get install -y gcc-9 g++-9
