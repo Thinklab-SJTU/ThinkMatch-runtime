@@ -108,7 +108,7 @@ jobs:
       # https://github.com/docker/build-push-action
       - name: Build and push Docker image
         #if: ${{ steps.existing-image.outputs.exists != 'true' }}
-        if: ((!steps.existing-image.outputs.image_exist))
+        if: ${{ steps.existing-image.outputs.image_exist == '0' }}
         id: build-and-push
         uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
         with:
@@ -124,7 +124,7 @@ jobs:
       # https://github.com/sigstore/cosign
       - name: Sign the published Docker image
         #if: ${{ github.event_name != 'pull_request' && steps.existing-image.outputs.exists != 'true' }}
-        if: ${{ github.event_name != 'pull_request' && !steps.existing-image.outputs.image_exist }}
+        if: ${{ github.event_name != 'pull_request' && steps.existing-image.outputs.image_exist == '0' }}
         env:
           COSIGN_EXPERIMENTAL: "true"
         # This step uses the identity token to provision an ephemeral certificate
