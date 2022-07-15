@@ -16,7 +16,7 @@ env:
   # Use docker.io for Docker Hub if empty
   REGISTRY: docker.io #ghcr.io
   # github.repository as <account>/<repo>
-  IMAGE_NAME: runzhongwang/thinkmatch #thinklab-sjtu/thinkmatch
+  IMAGE_NAME: thinkmatch #thinklab-sjtu/thinkmatch
 
 
 jobs:
