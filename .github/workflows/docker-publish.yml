@@ -88,7 +88,7 @@ jobs:
           registry: ${{ env.REGISTRY }}
           username: ${{ secrets.DOCKER_USERNAME }} #${{ github.actor }}
           password: ${{ secrets.DOCKER_PASSWD }}  #${{ secrets.GITHUB_TOKEN }}
-          image: ${{ env.IMAGE_NAME }}:${{ matrix.tag }}-pygmtools0.1.14  #${{ steps.pygmtools.outputs.latestVersion }}
+          image: ${{ env.IMAGE_NAME }}:${{ matrix.tag }}-pygmtools${{ steps.pygmtools.outputs.latestVersion }}
       
       #- name: Check for existing image
       #  id: existing-image
