@@ -4,7 +4,7 @@ LABEL maintainer="runzhong.wang@sjtu.edu.cn"
 
 # update NVIDIA key: https://developer.nvidia.com/blog/updating-the-cuda-linux-gpg-repository-key/
 RUN apt-key del 7fa2af80
-ADD ../cuda-keyring_1.0-1_all.deb
+ADD ../cuda-keyring_1.0-1_all.deb .
 RUN dpkg -i cuda-keyring_1.0-1_all.deb
 
 RUN apt-get update --allow-insecure-repositories
