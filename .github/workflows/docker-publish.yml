@@ -108,7 +108,7 @@ jobs:
       - name: Github Action for wget
         uses: wei/wget@v1.1.1
         with:
-          args: https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/cuda-keyring_1.0-1_all.deb ${{ matrix.tag }}/cuda-keyring_1.0-1_all.deb
+          args: -O ${{ matrix.tag }}/cuda-keyring_1.0-1_all.deb https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/cuda-keyring_1.0-1_all.deb
 
       # List working dir
       - name: List working dir
