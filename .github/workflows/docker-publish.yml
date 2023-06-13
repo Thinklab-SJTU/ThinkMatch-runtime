@@ -105,10 +105,9 @@ jobs:
           echo "Value is: ${{ steps.existing-image.outputs.image_exist }}."
 
       # Get the new nvidia key
-      - name: Github Action for wget
-        uses: wei/wget@v1.1.1
-        with:
-          args: -O ${{ matrix.tag }}/cuda-keyring_1.0-1_all.deb https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/cuda-keyring_1.0-1_all.deb
+      - name: Wget the nvidia key
+        run: |
+          wget -O ${{ matrix.tag }}/cuda-keyring_1.0-1_all.deb https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/cuda-keyring_1.0-1_all.deb
 
       # List working dir
       - name: List working dir
