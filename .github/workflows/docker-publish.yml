@@ -34,6 +34,11 @@ jobs:
         tag: ['torch1.6.0-cuda10.1-cudnn7-pyg1.6.3', 'torch1.7.1-cuda11.0-cudnn8-pyg1.6.3', 'torch1.10.0-cuda11.3-cudnn8-pyg2.0.3']
 
     steps:
+      # Workaround suggested by https://github.com/actions/runner-images/issues/2840
+      - name: Free for more disk space
+        run: |
+          sudo rm -rf /usr/share/dotnet && sudo rm -rf /opt/ghc && sudo rm -rf "/usr/local/share/boost" && sudo rm -rf "$AGENT_TOOLSDIRECTORY"
+
       # Fetch the latest pygmtools version
       - name: Package Latest Version
         # You may pin to the exact commit or the version.
